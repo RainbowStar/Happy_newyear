@@ -56,7 +56,7 @@ do
                 \ffmpeg -loglevel quiet -y -s 640x360 -i $yuv_file ./${stage2_jpg}/${yuv_file%.*}$version.jpg < /dev/null
 		cp $yuv_file ./stage2/yuv
 		#写入记录新文件call_stage1_version.rect
-		echo $line >> call_stage1_version.rect
+		echo $line >> call_stage2_version.rect
             else
                 echo ""
             fi
