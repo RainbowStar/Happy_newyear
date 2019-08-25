@@ -50,13 +50,13 @@ do
                 \ffmpeg -loglevel quiet -y -s 640x360 -i $yuv_file ./${stage1_jpg}/${yuv_file%.*}$version.jpg < /dev/null
 		cp $yuv_file ./stage1/yuv
 		#写入记录新文件call_stage1_version.rect
-		echo $line >> call_stage1_version..rect
+		echo $line >> call_stage1_version.rect
             elif [[ $stage1 =~ 'stage1:T' && $stage2 =~ 'stage2:T' ]]; then
                 echo "stage1 & stage2"
                 \ffmpeg -loglevel quiet -y -s 640x360 -i $yuv_file ./${stage2_jpg}/${yuv_file%.*}$version.jpg < /dev/null
 		cp $yuv_file ./stage2/yuv
 		#写入记录新文件call_stage1_version.rect
-		echo $line >> call_stage1_version,rect
+		echo $line >> call_stage1_version.rect
             else
                 echo ""
             fi
