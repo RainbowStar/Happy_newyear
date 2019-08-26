@@ -19,30 +19,15 @@ stage1_jpg=stage1
 stage2_jpg=stage2
 list_file=CALL.rect
 version="1.0.0.17"
-stage1_yuv=stage1/stage1_yuv
-stage1_yuv=stage2/stage1_yuv
 if [ ! -e "./$stage1_jpg"  ];then
     \mkdir ./$stage1_jpg
 else
     \rm ./$stage1_jpg/*
 fi
-
 if [ ! -e "./$stage2_jpg"  ];then
     \mkdir ./$stage2_jpg
 else
     \rm ./$stage2_jpg/*
-fi
-
-if [ ! -e "./$stage1_yuv"  ];then
-    \mkdir ./$stage1_yuv
-else 
-    \rm ./$stage1_yuv/*
-fi
-
-if [ ! -e "./$stage2_yuv"  ];then
-    \mkdir ./$stage2_yuv
-else 
-    \rm ./$stage2_yuv/*
 fi
 
 line_num=$(\wc -l < $list_file)
@@ -65,14 +50,13 @@ do
                 \ffmpeg -loglevel quiet -y -s 640x360 -i $yuv_file ./${stage1_jpg}/${yuv_file%.*}$version.jpg < /dev/null
 		cp $yuv_file ./stage1/yuv
 		#写入记录新文件call_stage1_version.rect
-		echo $line >> ./stage1/call_stage1_$version.rect
+		echo $line >> call_stage1_$version.rect
             elif [[ $stage1 =~ 'stage1:T' && $stage2 =~ 'stage2:T' ]]; then
                 echo "stage1 & stage2"
                 \ffmpeg -loglevel quiet -y -s 640x360 -i $yuv_file ./${stage2_jpg}/${yuv_file%.*}$version.jpg < /dev/null
 		cp $yuv_file ./stage2/yuv
 		#写入记录新文件call_stage1_version.rect
-		echo $line >> ./stage2/call_stage2_$version.rect
-
+		echo $line >> call_stage2_$version.rect
             else
                 echo ""
             fi
