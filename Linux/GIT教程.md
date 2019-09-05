@@ -131,7 +131,7 @@ cm = commit -m
 
 ```
 
-- git 忽略不需要跟踪的文件：编辑.gitigonre
+- git 忽略不需要跟踪的文件：编辑.gitignore
 
 ```
 # 收集中。。。。

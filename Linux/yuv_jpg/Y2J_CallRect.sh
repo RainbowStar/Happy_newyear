@@ -13,9 +13,11 @@
 #版   本：V0.1
 #修改记录：(从高到底排序)
 #V0.1
-# ffmpeg cmd must add '< /dev/null'
-
-version="1.0.0.17"
+# ffmpeg cmd must add '< /dev/null'让其输出重定向到null防止刷屏
+#每个命令前添加\ 防止别名
+#V0.2
+#优化正则表达式格式
+version="1.0.0.17"#将其优化为从输入获取版本号 添加$1?
 list_file=CALL.rect
 
 # file lists
@@ -54,11 +56,11 @@ do
     # echo $line
     printf "line %d / %d : \t" $((i++)) $line_num
     #      CALL-n.yuv timestamp:nnn... stage1:T... stage2:F...
-    if [[ $line =~ ([^ ]+)\ ([^ ]+)\ (stage1[^ ]+)(\ (stage2[^ ]+))* ]]; then
+    if [[ $line =~ ([^ ]+).+?(stage1[^ ]+)\ (stage2[^ ]+)* ]]; then
         yuv_file=${BASH_REMATCH[1]}
-        timestamp=${BASH_REMATCH[2]}
-        stage1_b=${BASH_REMATCH[3]}
-        stage2_b=${BASH_REMATCH[4]}
+#        timestamp=${BASH_REMATCH[2]}
+        stage1_b=${BASH_REMATCH[2]}
+        stage2_b=${BASH_REMATCH[3]}
         if [ -f "$yuv_file" ] #file
         then
             if [[ $stage1_b =~ 'stage1:T' && $stage2_b =~ 'stage2:F' ]]; then
