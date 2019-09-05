@@ -15,7 +15,7 @@
 #V0.1
 # ffmpeg cmd must add '< /dev/null'
 
-version="1.0.0.17"
+version="v1"
 list_file=CALL.rect
 
 # file lists
@@ -54,7 +54,7 @@ do
     # echo $line
     printf "line %d / %d : \t" $((i++)) $line_num
     #      CALL-n.yuv timestamp:nnn... stage1:T... stage2:F...
-    if [[ $line =~ ([^ ]+)\ ([^ ]+)\ (([^ ]+)\ ([^ ]+)\ stage1[^ ]+)(\ (stage2[^ ]+))* ]]; then
+    if [[ $line =~ ([^ ]+)\ ([^ ]+)\ ([^ ]+)\ ([^ ]+)\ (stage1[^ ]+)(\ (stage2[^ ]+))* ]]; then
         yuv_file=${BASH_REMATCH[1]}
         timestamp=${BASH_REMATCH[2]}
         stage1_b=${BASH_REMATCH[5]}
