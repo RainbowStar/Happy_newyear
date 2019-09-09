@@ -93,7 +93,7 @@ do
                 # stage2:T-1.349073-gestureex[(294,152),(418,152),(418,268),(294,268)]-gesture[(324,188),(386,188),(386,244),(324,244)]
                 if [[ $stage2_b =~ stage2:T-.+-gestureex\[\(([0-9]+),([0-9]+)\),\(.+?\),\(([0-9]+),([0-9]+)\),\(.+?\)\]-gesture\[\(([0-9]+),([0-9]+)\),\(.+?\),\(([0-9]+),([0-9]+)\),\(.+?\)\] ]];
                 then
-                    cecho g "stage1 & stage2"
+                    cecho r "stage1 & stage2"
                     #写入记录新文件call_stage2_version.rect
                     echo $line >> ./stage2/$stage2_rect
                     \cp $yuv_file ./$stage2_yuv
@@ -103,20 +103,20 @@ do
                     body2_llx=${BASH_REMATCH[1]}; body2_lly=${BASH_REMATCH[2]}; body2_urx=${BASH_REMATCH[3]}; body2_ury=${BASH_REMATCH[4]};
                     gest2_llx=${BASH_REMATCH[5]}; gest2_lly=${BASH_REMATCH[6]}; gest2_urx=${BASH_REMATCH[7]}; gest2_ury=${BASH_REMATCH[8]};
                     \ffmpeg -loglevel $loglevel -y -s $res -i $yuv_file \
-                            -vf "drawbox=x=$body_llx:y=$body_lly:w=$body_urx-$body_llx:h=$body_ury-$body_lly:t=2:color=green@0.5,\
-                                 drawbox=x=$gest_llx:y=$gest_lly:w=$gest_urx-$gest_llx:h=$gest_ury-$gest_lly:t=2:color=red@0.5,\
-                                 drawbox=x=$body2_llx:y=$body2_lly:w=$body_urx-$body2_llx:h=$body2_ury-$body2_lly:t=2:color=blue@0.5,\
-                                 drawbox=x=$gest2_llx:y=$gest2_lly:w=$gest_urx-$gest2_llx:h=$gest2_ury-$gest2_lly:t=2:color=yellow@0.5" \
+                            -vf "drawbox=x=$body_llx:y=$body_lly:w=$body_urx-$body_llx:h=$body_ury-$body_lly:t=1:color=green@0.9,\
+                                 drawbox=x=$gest_llx:y=$gest_lly:w=$gest_urx-$gest_llx:h=$gest_ury-$gest_lly:t=1:color=red@0.9,\
+                                 drawbox=x=$body2_llx:y=$body2_lly:w=$body_urx-$body2_llx:h=$body2_ury-$body2_lly:t=1:color=blue@0.9,\
+                                 drawbox=x=$gest2_llx:y=$gest2_lly:w=$gest_urx-$gest2_llx:h=$gest2_ury-$gest2_lly:t=1:color=yellow@0.9" \
                             ./${jpg_dir}/${yuv_file%.*}_${version}.jpg < /dev/null
                 else # stage1
-                    cecho b "stage1"
+                    cecho y "stage1"
                     #写入记录新文件call_stage1_version.rect
                     echo $line >> ./stage1/$stage1_rect
                     \cp $yuv_file ./$stage1_yuv
                     jpg_dir=$stage1
                     \ffmpeg -loglevel $loglevel -y -s $res -i $yuv_file \
-                            -vf "drawbox=x=$body_llx:y=$body_lly:w=$body_urx-$body_llx:h=$body_ury-$body_lly:t=2:color=green@0.5,\
-                                 drawbox=x=$gest_llx:y=$gest_lly:w=$gest_urx-$gest_llx:h=$gest_ury-$gest_lly:t=2:color=red@0.5" \
+                            -vf "drawbox=x=$body_llx:y=$body_lly:w=$body_urx-$body_llx:h=$body_ury-$body_lly:t=1:color=green@0.9,\
+                                 drawbox=x=$gest_llx:y=$gest_lly:w=$gest_urx-$gest_llx:h=$gest_ury-$gest_lly:t=1:color=red@0.9" \
                             ./${jpg_dir}/${yuv_file%.*}_${version}.jpg < /dev/null
                 fi
             else
