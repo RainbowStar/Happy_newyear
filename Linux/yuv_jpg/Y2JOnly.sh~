@@ -22,6 +22,7 @@ cecho() {
   [ -z "$text" ] && local text="$color$2${code}0m"
   echo -e "$text"
   }
+yuvfile=".yuv$"
 i=1
 file_num=$(ls -l|grep "yuv$"|wc -l)
 dir="jpg"
