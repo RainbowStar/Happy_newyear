@@ -86,6 +86,15 @@ git rm
 通用命令：
 1.git push origin master
 2.git pull //获取最新仓库文件，默认跟踪的服务器和分支来拉取
+注意：git pull出现冲突时
+1.用代码库中的文件完全覆盖本地工作版本：
+git reset --hard
+git pull
+2.希望保留生产服务器上所做的改动,仅仅并入新配置项
+git stash
+git pull
+git stash pop
+然后可以使用git diff -w +文件名 来确认代码自动合并的情况.
 克隆
 git clone
 本地与云端建立连接
