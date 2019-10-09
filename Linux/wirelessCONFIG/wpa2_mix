@@ -53,7 +53,7 @@ config wifi-iface
 	option ssid 'Wpa2_mix'
 	option network 'lan'
 	option encryption 'psk2'
-	option key '12345678'
+	option key '11112222'
 #	option disabled '1'
 
 config wifi-iface

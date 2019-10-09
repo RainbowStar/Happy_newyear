@@ -114,6 +114,15 @@ config wifi-iface
 config wifi-iface
 	option device 'radio0'
 	option mode 'ap'
+	option ssid '322345678901234567890:!@#$danale'
+	option network 'lan'
+	option encryption 'psk-mixed'
+	option key '12345678'
+#	option disabled '1'
+
+config wifi-iface
+	option device 'radio0'
+	option mode 'ap'
 	option ssid '1)2*3(45&9!0?danale'
 	option network 'lan'
 	option encryption 'psk-mixed'
@@ -135,7 +144,7 @@ config wifi-iface
 	option ssid '322345678901234567890:!@#$大拿'
 	option network 'lan'
 	option encryption 'psk-mixed'
-	option key '12345678'
+	option key '11112222'
 	option disabled '1'
 
 config wifi-iface
@@ -208,8 +217,8 @@ config wifi-iface
 	option network 'lan'
 	option encryption 'wep-open'
 	option key '1'
-	option key1 '1111222211'
-#	option disabled '1'
+	option key1 '1234567890'
+	option disabled '1'
 
 config wifi-iface
 	option device 'radio0'
