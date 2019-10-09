@@ -97,12 +97,14 @@ win+r \\服务器IP
 登陆
 右键：映射网络驱动器
 (8)相关命令
-创建用户 sudo smbpasswd -a (只能是ubuntu账户的账户名)
 查看用户 sudo pdbedit -L
-修改密码 sudo smbpasswd user
-删除用户 sudo smbpasswd -x user
 重启服务 sudo service smbd restart
 清除win连接：net use * /del
+smbpasswd -a 添加用户（要添加的用户必须是系统用户）
+smbpasswd -d 冻结用户（限制该用户访问共享文件）
+smbpasswd -e 恢复用户（解冻用户）
+smbpasswd -n 把用户的密码设置成空（要在global中写入 null passwords -true）
+smbpasswd -x 删除用户（将该用户从smb组中排除）
 ```
 
 
