@@ -1,33 +1,30 @@
 # GIT教程
 
-> 1.与github进行第一次“对话”
->
-> 2.传输文件到github
->
-> 3.管理：回退、对比、撤销
+[TOC]
 
 #### [初步上手](<https://blog.csdn.net/huangqqdy/article/details/83032408>)：与github进行第一次“对话”
 
 ```
-1.注册账号&下载软件：省略
+1.注册账号&下载软件：windows软件使用git for windows、linux直接安装git后配置
 2.配置环境：
 # 配置用户名
-git config --global user.name "username" //一定是github上？？？？
+git config --global user.name "username" //这个是本地的。可以不是github上，最好一致
 # 配置邮箱
 git config --global user.email "username@email.com"     //("username@email.com"注册账号时用的邮箱)
 #生成SSH
-ssh-keygen -t rsa //连续三次回车，在ssh目录找到id_rsa.pub,打开复制内容到github账号的ssh配置页面粘贴(找不到ssh目录就多找找。。。)
+ssh-keygen -t rsa //连续三次回车，在~/.ssh目录(ssh文件为隐藏文件使用ls -a)找到id_rsa.pub,打开复制内容到github网页-设置-ssh keys页面粘贴
 #测试是否连接成功
-ssh -T git@github.com //提示：Hi,XXX,You've successfully.......
+ssh -T git@github.com //注意：git@github.com中github.com是域名，根据公司域名的去修改，配置成功提示：Hi,XXX,You've successfully.......
 ```
 
 #### [最简使用教程](<https://www.bootcss.com/p/git-guide/>)：传输文件到github
 
 ```
-1.获取远程仓库：git clone https...
-2.本地操作|添加追踪文件：git add filename、git add *(使用这个注意编辑.gitigonre，不写代码暂时不用编辑gitigonre)
+必须走完完整的五步
+1.获取远程仓库：git clone git@xxx.git //一般格式
+2.本地操作|添加追踪文件：git add filename、git add .(使用这个注意编辑.gitigonre，不写代码暂时不用编辑gitigonre)
 3.本地操作|确认更改：git commit -m "代码提交信息"
-4.云端交互|推送本地文件：git push origin master
+4.云端交互|推送本地文件：git push origin master(一般是先git pull)
 5.云端交互|获取云端最新文件：git pull
 ```
 
@@ -35,7 +32,7 @@ ssh -T git@github.com //提示：Hi,XXX,You've successfully.......
 
 > 1.本地管理主要就是工作区、缓存区(git add后)、版本库(git commit后的)
 
-- 回退：根据commit之后产生commit_id回退？？？？是整个回退还是？
+- 回退：根据commit之后产生的commit_id回退
 
 ```
 1.git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
@@ -72,7 +69,7 @@ git commit -m "changed the foldername whaddup"
 git rm
 ```
 
-#### 远程管理
+#### 远程管理：本地文件推送到云端
 
 > 1.克隆
 >
@@ -122,14 +119,14 @@ git clone
 删除分支：git branch -d <name>
 ```
 
-#### 效率提升
+#### 效率提升：快捷键设置
 
 - git设置快捷
 
 ```
-1.git config --global alias.st status //global是针对当前用户，如果不加，只针对当前仓库
+方法1.git config --global alias.st status //global是针对当前用户，如果不加，只针对当前仓库
  git config --global alias.cm 'commit -m'
-2.vim ~/.gitconfig //.gitconfig为当前用户的配置文件。当前仓库的配置文件为.git/config
+方法2.vim ~/.gitconfig //.gitconfig为当前用户的配置文件。当前仓库的配置文件为.git/config
 [alias]
 st = status
 pl = pull
@@ -137,7 +134,6 @@ ps = push
 a = add
 br = branch
 cm = commit -m
-
 ```
 
 - git 忽略不需要跟踪的文件：编辑.gitignore
@@ -155,7 +151,5 @@ Desktop.ini
 *.egg-info
 dist
 build
-
-
 ```
 
